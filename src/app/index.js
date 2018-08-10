@@ -1,16 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
 import { render } from "react-dom";
+import { BrowserRouter as Router, Route, hashHistory, Switch } from "react-router-dom";
 
 import { Home } from './components/Home';
-import { Header } from './components/Header';
+import { User } from './components/User';
 
-class App extends React.Component {
+class App extends Component {
     render() {
         return (
-            <div>
-                <Home />
-                <h1>My First App</h1>
-            </div>
+            <Router history={hashHistory}>
+                <Switch>
+                    <Route path={"/home"} component={Home}>
+                        {/* nested routers */}
+                        {/* <Route path={"/home/home"} component={Home} /> */}
+                        {/* router with parameter */}
+                        {/* it can be accesible by /user/id link */}
+
+                    </Route>
+
+                    <Route path={"/user/:id"} component={User} />
+                </Switch>
+            </Router>
 
         )
     }
